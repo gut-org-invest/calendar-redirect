@@ -29,11 +29,9 @@ Deploys are handled by the [Cloudflare Workers & Pages GitHub app](https://githu
 
 **Important:** The Worker name in Cloudflare must match `calendar-redirect` in `wrangler.jsonc`, or the build will fail.
 
-### 3. Custom domain + TLS (infra-terraform)
+### 3. Custom domain + TLS
 
-`meet.bcause.com` is bound via a Worker **Custom Domain** in [`infra-terraform`](https://github.com/gut-org-invest/infra-terraform) (`cloudflare_worker_domain.meet_calendar_redirect`). Terraform provisions DNS and an edge TLS certificate — do not add routes for this hostname in `wrangler.jsonc`.
-
-After the first worker deploy, apply infra-terraform to bind the custom domain and provision TLS.
+`meet.bcause.com` is configured in `wrangler.jsonc` with `custom_domain: true`. Each deploy provisions DNS and an edge TLS certificate.
 
 ### 4. Automatic deploys
 
@@ -41,7 +39,7 @@ Every push to `main` triggers a build and deploy. Other branches create preview 
 
 ## Custom domain
 
-Production hostname: **`meet.bcause.com`** (Worker Custom Domain + TLS in infra-terraform).
+Production hostname: **`meet.bcause.com`** (`custom_domain: true` in `wrangler.jsonc`).
 
 ## Local development
 
