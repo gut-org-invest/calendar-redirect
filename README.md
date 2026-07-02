@@ -29,16 +29,17 @@ Deploys are handled by the [Cloudflare Workers & Pages GitHub app](https://githu
 
 **Important:** The Worker name in Cloudflare must match `calendar-redirect` in `wrangler.jsonc`, or the build will fail.
 
-### 3. Automatic deploys
+### 3. DNS (infra-terraform)
+
+The `meet.bcause.com` route is declared in `wrangler.jsonc`. DNS is managed in [`infra-terraform`](https://github.com/gut-org-invest/infra-terraform) (`cloudflare_record.meet_calendar_redirect` — proxied `AAAA` `100::` placeholder). Apply Terraform after the first worker deploy.
+
+### 4. Automatic deploys
 
 Every push to `main` triggers a build and deploy. Other branches create preview versions (not promoted to production).
 
 ## Custom domain
 
-After the first deploy:
-
-1. Cloudflare dashboard → **Workers & Pages** → **calendar-redirect**
-2. **Settings** → **Domains & Routes** → add a custom domain (e.g. `schedule.yourcompany.com`)
+Production hostname: **`meet.bcause.com`** (configured in `wrangler.jsonc` routes and infra-terraform DNS).
 
 ## Local development
 
