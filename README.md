@@ -33,7 +33,7 @@ Deploys are handled by the [Cloudflare Workers & Pages GitHub app](https://githu
 
 `meet.bcause.com` is bound via a Worker **Custom Domain** in [`infra-terraform`](https://github.com/gut-org-invest/infra-terraform) (`cloudflare_worker_domain.meet_calendar_redirect`). Terraform provisions DNS and an edge TLS certificate — do not add routes for this hostname in `wrangler.jsonc`.
 
-After the first worker deploy, set `cloudflare_calendar_redirect_enabled = true` in Terraform Cloud and apply.
+After the first worker deploy, apply infra-terraform to bind the custom domain and provision TLS.
 
 ### 4. Automatic deploys
 
