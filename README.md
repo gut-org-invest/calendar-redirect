@@ -8,27 +8,30 @@ Cloudflare Worker that randomly redirects visitors to one of several agent calen
 
 Edit `src/config.js` and replace the placeholder URLs with your agents' booking links.
 
-### 2. Cloudflare API token
+### 2. Connect GitHub via Cloudflare Workers Builds
 
-Create a token in the [Cloudflare dashboard](https://dash.cloudflare.com/profile/api-tokens) with:
+Deploys are handled by the [Cloudflare Workers & Pages GitHub app](https://github.com/apps/cloudflare-workers-and-pages), not GitHub Actions.
 
-- **Permissions:** Account → Workers Scripts → Edit
-- **Account resources:** your account
+1. In the [Cloudflare dashboard](https://dash.cloudflare.com), go to **Workers & Pages** → **Create application**
+2. Select **Import a repository**
+3. Connect your GitHub account and authorize access to the **gut-org-invest** org
+4. Select **gut-org-invest/calendar-redirect**
+5. Use these build settings:
 
-### 3. GitHub secrets
+| Setting | Value |
+|---------|-------|
+| Production branch | `main` |
+| Build command | *(leave empty)* |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | `/` |
 
-In the repo settings, add:
+6. Click **Save and Deploy**
 
-| Secret | Value |
-|--------|-------|
-| `CLOUDFLARE_API_TOKEN` | API token from step 2 |
-| `CLOUDFLARE_ACCOUNT_ID` | Found on the Cloudflare dashboard overview page (right sidebar) |
+**Important:** The Worker name in Cloudflare must match `calendar-redirect` in `wrangler.jsonc`, or the build will fail.
 
-### 4. Deploy
+### 3. Automatic deploys
 
-Push to `main` — GitHub Actions deploys automatically.
-
-You can also trigger a deploy manually from the **Actions** tab.
+Every push to `main` triggers a build and deploy. Other branches create preview versions (not promoted to production).
 
 ## Custom domain
 
