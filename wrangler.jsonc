@@ -7,8 +7,5 @@
     "enabled": true
   },
   "workers_dev": false,
-  "preview_urls": false,
-  "routes": [
-    { "pattern": "meet.bcause.com/*", "zone_name": "bcause.com" }
-  ]
+  "preview_urls": false
 }
