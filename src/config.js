@@ -1,6 +1,4 @@
-// Replace with your agents' booking links (Calendly, HubSpot, Google Calendar, etc.)
 export const CALENDAR_LINKS = [
-  "https://calendly.com/agent-one/30min",
-  "https://calendly.com/agent-two/30min",
-  "https://calendly.com/agent-three/30min",
+  "https://calendar.app.google/GwyCDoRxAj7RmgiB8", // Nicole
+  "https://calendar.app.google/CML3g2XeQgRepZk49", // Simone
 ];
